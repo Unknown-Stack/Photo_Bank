@@ -1,0 +1,27 @@
+
+<h1 >Весь банк фотографий</h1>
+
+{{#if photoes.length}}
+{{#each photoes}}
+  <div class="row">
+    <div class="col s6 offset-s3">
+      <div class="card">
+        <div class="card-image">
+          <img src="{{img}}" alt="{{title}}">
+        </div>
+        <div class="card-content">
+          <span class="card-title">{{title}}</span>
+          <p class="description" >{{description}}</p>
+          <p class="price">{{price}}</p>
+
+        </div>
+        <div class="card-action">
+          <a href="/photoes/{{id}}">Купить</a>
+        </div>
+      </div>
+    </div>
+  </div>
+{{/each}}
+{{else}}
+<h2>Maybe Later...</h2>
+{{/if}}
