@@ -20,6 +20,26 @@ class Photo {
       id: this.id,
     };
   }
+  static async update(photo) {
+    const photoes = await Photo.getAll();
+
+    const idx = photoes.findIndex((c) => c.id === photo.id);
+    photoes[idx] = photo;
+
+    return new Promise((resolve, reject) => {
+      fs.writeFile(
+        path.join(__dirname, "..", "data", "photo.json"),
+        JSON.stringify(photoes),
+        (err) => {
+          if (err) {
+            reject(err);
+          } else {
+            resolve();
+          }
+        }
+      );
+    });
+  }
   async save() {
     const photoes = await Photo.getAll();
     photoes.push(this.toJSON());
@@ -53,6 +73,10 @@ class Photo {
         }
       );
     });
+  }
+  static async getById(id) {
+    const photoes = await Photo.getAll();
+    return photoes.find((c) => c.id === id);
   }
 }
 

@@ -1,0 +1,28 @@
+<h1>Редактировать {{photo_id.title}}</h1>
+<form action="/photo/edit" method="POST">
+<div class="input-field ">
+          <input id="title" name="title" type="text" class="validate" required value="{{photo_id.title}}">
+          <label for="title">Назвение фото</label>
+          <span class="helper-text" data-error="Введите название"></span>
+</div>
+
+<div class="input-field ">
+          <input  id="description" name="description" type="text" class="validate" value="{{photo_id.description}}">
+          <label for="description">Описание</label>
+          <span class="helper-text" data-error="Введите описание для фото" ></span>
+</div>
+
+<div class="input-field ">
+          <input  id="price" name="price" type="number" class="validate" required min='0' value="{{photo_id.price}}">
+          <label for="price">Цена</label>
+          <span class="helper-text" data-error="Введите цену" ></span>
+</div>
+
+<div class="input-field ">
+          <input  id="img" name="img" type="text" class="validate" value="{{photo_id.img}}">
+          <label for="img">URL картинки</label>
+          <span class="helper-text" data-error="Укажите коррекнтый URL"></span>
+</div>
+<input type="hidden" name='id' value="{{photo_id.id}}">
+<button class="btn btn-primary">Редактировать</button>
+</form>

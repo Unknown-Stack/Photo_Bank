@@ -7,6 +7,7 @@ const exphbs = require("express-handlebars");
 const homeRoutes = require("./routes/home");
 const addRoutes = require("./routes/add");
 const photoRoutes = require("./routes/photo");
+const cardRoutes = require("./routes/card");
 
 // Экспресс
 const app = express();
@@ -21,13 +22,14 @@ const hbs = exphbs.create({
 app.engine("hbs", hbs.engine);
 app.set("view engine", "hbs");
 app.set("views", "views");
-app.use(express.static("public"));
+app.use(express.static(path.join(__dirname, "public")));
 app.use(express.urlencoded({ extended: true }));
 
 // Роутинг
 app.use("/", homeRoutes);
 app.use("/photo", photoRoutes);
 app.use("/add", addRoutes);
+app.use("/card", cardRoutes);
 
 // Старт сервера
 const PORT = process.env.PORT || 3000;
