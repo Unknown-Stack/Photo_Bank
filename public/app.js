@@ -42,3 +42,22 @@ if ($card) {
     }
   });
 }
+
+document.querySelector("#search").oninput = function () {
+  let val = this.value.trim();
+  let card = document.querySelectorAll(".cards");
+  if (val !== "") {
+    card.forEach(function (elem) {
+      if (elem.innerText.search(val) == -1) {
+        elem.classList.add("hide");
+        console.log(card);
+      } else {
+        elem.classList.remove("hide");
+      }
+    });
+  } else if (val === "") {
+    card.forEach(function (elem) {
+      elem.classList.remove("hide");
+    });
+  }
+};

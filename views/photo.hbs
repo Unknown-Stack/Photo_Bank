@@ -1,10 +1,15 @@
 
 <h1 >Весь банк фотографий</h1>
-
+<div class="row"></div>
+<div class="input-field col">
+  <input placeholder="Поиск" id="search" type="text" class="validate">
+    <label for="first_name">Что поискать?</label>
+</div>
+</div>
 {{#if photoes.length}}
 {{#each photoes}}
   <div class="row">
-    <div class="col s6 offset-s3">
+    <div class="col s6 offset-s3 cards">
       <div class="card hoverable">
         <div class="card-image">
           <img src="{{img}}" alt="{{title}}">

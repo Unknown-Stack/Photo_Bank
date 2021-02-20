@@ -32,3 +32,6 @@
 .price-incard {
   font-size: 2rem;
 }
+.hide {
+  display: none;
+}
