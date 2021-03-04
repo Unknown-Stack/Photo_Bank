@@ -17,13 +17,17 @@
       <td><img src="{{img}}" alt="{{title}}" class="img-incard"></td>
       <td>{{count}}</td>
       <td >
-        <button class="btn btn-small red js-remove" data-id="{{id}}">Удалить</button>
+        <button class="btn btn-small red js-remove" data-id="{{_id}}" data-csrf="{{@root.csrf}}">Удалить</button>
       </td>
     </tr>
     {{/each}}
   </tbody>
 </table>
 <p><strong>Итого:</strong> <span class="price">{{price}}</span></p>
+<form action="/orders" method="POST">
+<input type="hidden" name="_csrf" value="{{csrf}}">
+<button type="submit" class="btn">Сделать заказ</button>
+</form>
 {{else}}
 <p>Ваша корзина пуста</p>
 {{/if}}

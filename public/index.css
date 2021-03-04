@@ -35,3 +35,14 @@
 .hide {
   display: none;
 }
+.remove-button {
+  margin: 2rem 0 0 0;
+}
+.alert {
+  padding: 0.5re 1rem;
+  border-radius: 10px;
+  text-align: center;
+  margin-bottom: 1rem;
+  background: rgba(255, 0, 0, 0.2);
+  color: red;
+}

@@ -23,6 +23,13 @@
           <label for="img">URL картинки</label>
           <span class="helper-text" data-error="Укажите коррекнтый URL"></span>
 </div>
-<input type="hidden" name='id' value="{{photo_id.id}}">
-<button class="btn btn-primary">Редактировать</button>
+<input type="hidden" name='id' value="{{photo_id._id}}">
+<input type="hidden" name="_csrf" value="{{csrf}}">
+<button type="submit" class="btn btn-primary">Редактировать</button>
+</form>
+
+<form action="/photo/remove" method="POST" class="remove-button">
+<input type="hidden" name='id' value="{{photo_id._id}}">
+<input type="hidden" name="_csrf" value="{{csrf}}">
+<button class="btn red">Удалить фото</button>
 </form>

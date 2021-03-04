@@ -1,8 +1,9 @@
 const { Router } = require("express");
 const Photo = require("../models/photo");
+const auth = require("../middleware/auth");
 const router = Router();
 
-router.get("/", (req, res) => {
+router.get("/", auth, (req, res) => {
   res.status(200);
   res.render("add", {
     title: "Добавить свое фото в банк",
@@ -10,14 +11,21 @@ router.get("/", (req, res) => {
   });
 });
 
-router.post("/", async (req, res) => {
-  const photo = new Photo(
-    req.body.title,
-    req.body.description,
-    req.body.price,
-    req.body.img
-  );
-  await photo.save();
-  res.redirect("/photo");
+router.post("/", auth, async (req, res) => {
+  const photo = new Photo({
+    title: req.body.title,
+    description: req.body.description,
+    price: req.body.price,
+    img: req.body.img,
+    userId: req.user,
+  });
+
+  try {
+    await photo.save();
+    res.redirect("/photo");
+  } catch (e) {
+    console.log(e);
+  }
 });
+
 module.exports = router;

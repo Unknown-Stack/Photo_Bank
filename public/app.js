@@ -13,9 +13,12 @@ if ($card) {
   $card.addEventListener("click", (event) => {
     if (event.target.classList.contains("js-remove")) {
       const id = event.target.dataset.id;
-      console.log(id);
+      const csrf = event.target.dataset.csrf;
       fetch("/card/remove/" + id, {
         method: "delete",
+        headers: {
+          "X-XSRF-TOKEN": csrf,
+        },
       })
         .then((res) => res.json())
         .then((card) => {
@@ -28,7 +31,7 @@ if ($card) {
                 <td><img src="${c.img}" alt="${c.title}" class="img-incard"></td>
                 <td>${c.count}</td>
                 <td >
-                  <button class="btn btn-small red js-remove" data-id="${c.id}">Удалить</button>
+                  <button class="btn btn-small red js-remove" data-id="${c._id}">Удалить</button>
                 </td>
             </tr>`;
               })
@@ -42,6 +45,22 @@ if ($card) {
     }
   });
 }
+const toDate = (date) => {
+  return new Intl.DateTimeFormat("ru-RU", {
+    day: "2-digit",
+    month: "long",
+    year: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+  }).format(new Date(date));
+};
+
+M.Tabs.init(document.querySelectorAll(".tabs"));
+
+document.querySelectorAll(".date").forEach((node) => {
+  node.textContent = toDate(node.textContent);
+});
 
 document.querySelector("#search").oninput = function () {
   let val = this.value.trim();

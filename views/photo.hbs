@@ -1,12 +1,11 @@
 
 <h1 >Весь банк фотографий</h1>
-<div class="row"></div>
-<div class="input-field col">
+
+{{#if photoes.length}}
+<div class="input-field">
   <input placeholder="Поиск" id="search" type="text" class="validate">
     <label for="first_name">Что поискать?</label>
 </div>
-</div>
-{{#if photoes.length}}
 {{#each photoes}}
   <div class="row">
     <div class="col s6 offset-s3 cards">
@@ -21,12 +20,17 @@
 
         </div>
         <div class="card-action actions">
-          <a href="/photo/{{id}}" target="_blank">Подробнее</a>
-          <a href="/photo/{{id}}/edit?allow=true" target="">Редактировать</a>
+          <a href="/photo/{{_id}}">Подробнее</a>
+          {{#if @root.isAuth}}
+          {{#ifeq userId._id @root.userId}}
+          <a href="/photo/{{_id}}/edit?allow=true" >Редактировать</a>
+          {{/ifeq}}
           <form action="/card/add" method="POST">
-            <input type="hidden" name="id" value="{{id}}">
+            <input type="hidden" name="id" value="{{_id}}">
+            <input type="hidden" name="_csrf" value="{{@root.csrf}}">
             <button class="btn waves-effect waves-ligh" type="submit">В КОРЗИНУ</button>
           </form>
+          {{/if}}
         </div>
       </div>
     </div>
